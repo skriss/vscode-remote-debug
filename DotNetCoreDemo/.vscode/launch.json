@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name":".NET Core Docker Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "composeForDebug",
+            "cwd": "/app",
+            "program": "/app/DotNetCoreDemo.dll",
+            "sourceFileMap": {
+                "/app": "${workspaceRoot}"
+            },
+
+            "pipeTransport": {
+                "pipeProgram": "/bin/bash",
+                "pipeCwd": "${workspaceRoot}",
+                "pipeArgs": [ "-c", "./dockerTask.sh startDebugging" ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+
+            "logging": {
+                "engineLogging": true
+            }
+        },
+
+        {
+            "name":".NET Core K8s Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kubectlRunForDebug",
+            "cwd": "/app",
+            "program": "/app/DotNetCoreDemo.dll",
+            "sourceFileMap": {
+                "/app": "${workspaceRoot}"
+            },
+
+           "pipeTransport": {
+                "pipeProgram": "/bin/bash",
+                "pipeCwd": "${workspaceRoot}",
+                "pipeArgs": [ "-c", "./k8sTask.sh startDebugging" ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+
+            "logging": {
+                "engineLogging": true
+            }
+        }
+    ]
+}

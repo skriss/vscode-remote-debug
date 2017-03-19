@@ -1,0 +1,14 @@
+FROM microsoft/dotnet:1.1-sdk-msbuild
+ENV NUGET_XMLDOC_MODE skip
+WORKDIR /vsdbg
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        unzip \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -SL https://aka.ms/getvsdbgsh --output GetVsDbg.sh \
+    && chmod 700 GetVsDbg.sh \
+    && ./GetVsDbg.sh -v latest -l . \
+    && rm GetVsDbg.sh
+WORKDIR /app
+ENTRYPOINT ["/bin/bash", "-c", "if [ -z \"$REMOTE_DEBUGGING\" ]; then dotnet DotNetCoreDemo.dll; else sleep infinity; fi"]
+COPY . /app

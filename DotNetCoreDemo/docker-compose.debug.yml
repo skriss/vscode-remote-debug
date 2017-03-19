@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  dotnetcoredemo:
+    image: dotnetcoredemo:debug
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    environment:
+      - REMOTE_DEBUGGING
