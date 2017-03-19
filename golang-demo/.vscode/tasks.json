@@ -1,0 +1,27 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "osx": {
+        "command": "/bin/bash",
+        "options": {
+            "cwd": "${workspaceRoot}"
+        },
+        "tasks": [
+            {
+                "taskName": "dockerRunForDebug",
+                "suppressTaskName": true,
+                "args": [ "-c", "./dockerTask.sh dockerRunForDebug" ],
+                "isBuildCommand": false,
+                "showOutput": "always"
+            },
+            {
+                "taskName": "kubectlRunForDebug",
+                "suppressTaskName": true,
+                "args": [ "-c", "./k8sTask.sh kubectlRunForDebug" ],
+                "isBuildCommand": false,
+                "showOutput": "always"
+            }
+        ]
+    }
+}
