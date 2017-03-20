@@ -18,7 +18,7 @@ cleanAndBuildImage () {
   docker rm $containerName
   
   echo "Building the image $imageName ($ENVIRONMENT)."
-  docker build -f Dockerfile.debug -t $imageName .
+  docker build -f Dockerfile.debug -t $imageName:debug .
 }
 
 # Runs docker-compose.

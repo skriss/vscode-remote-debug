@@ -13,11 +13,6 @@
             "showLog": true
         },
         {
-            // To remote debug in Docker, run the following before debugging:
-            // # docker build -t golang-demo .
-            // # docker run -d --name webapp-go --privileged -p 8080:8080 -p 2345:2345 webapp-go
-            // And then each time you want to restart debugging:
-            // # docker restart
             "name": "Docker Launch (console)",
             "type": "go",
             "request": "launch",
@@ -27,8 +22,21 @@
             "env": {},
             "args": [],
             "remotePath": "/go/src/app",
-            "port": 2345, // Port 
-            "host": "localhost" // Docker IP 
+            "port": 2345,
+            "host": "localhost"
+        },
+        {
+            "name": "K8s Launch (console)",
+            "type": "go",
+            "request": "launch",
+            "preLaunchTask": "kubectlRunForDebug",
+            "mode": "remote",
+            "program": "${workspaceRoot}",
+            "env": {},
+            "args": [],
+            "remotePath": "/go/src/app",
+            "port": 32345,
+            "host": "192.168.99.100"
         }
     ]
 }
