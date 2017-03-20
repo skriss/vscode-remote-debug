@@ -1,11 +1,11 @@
-#!/bin/sh
-
 imageName="dotnetcoredemo"
 projectName="dotnetcoredemo"
 serviceName="dotnetcoredemo"
 containerName="${projectName}_${serviceName}_1"
 runtimeID="debian.8-x64"
 framework="netcoreapp1.1"
+
+eval $(minikube docker-env)
 
 # Kills existing deployment for the image
 cleanAll () {
@@ -74,6 +74,9 @@ waitForDeletion () {
 
 startDebugging () {
   # wait for pod to be created/ready
+
+  # TODO fix the below. This currently returns pods that are created
+  # but not yet ready, which won't allow port-forwarding.
   n=0
   until [ $n -ge 12 ]
   do
@@ -114,8 +117,6 @@ showUsage () {
   echo "    This will:"
   echo "        Build a Docker image named $imageName using debug environment."
 }
-
-eval $(minikube docker-env)
 
 if [ $# -eq 0 ]; then
   showUsage
