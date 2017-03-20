@@ -18,6 +18,7 @@ The following are the key components of each solution:
 This code should be considered proof-of-concept quality. I have made minimal effort to robustly handle errors, varying configurations, etc. Think of the samples as working guides to how to approach this problem rather than complete solutions.
 ## Todo List
 - add Node.js and Python examples
+- use non-default K8s namespace to make isolation/cleanup easier
 - fully support non-local execution environments
 - detailed walkthroughs for each project
 - add watch functionality for auto-deployment of changes
