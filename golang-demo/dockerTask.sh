@@ -28,7 +28,7 @@ dockerRun () {
   fi
 
   echo "Running image $imageName"
-  docker run -d --name $imageName --privileged -p 2345:2345 $containerName
+  docker run -d --name $containerName --privileged -p 2345:2345 $imageName:debug
 }
 
 # Shows the usage for the script.
